@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT||9001;
-const db  = require('./connections/mongoose')
+const mongoose  = require('./connections/mongoose')
 const session = require( "express-session");
 const passport = require('passport');
 app.use(express.json());
@@ -26,7 +26,7 @@ app.use(
   app.use(passport.initialize()); 
   app.use(passport.session()); 
   
-const loginRoute =  require('./routes/Login_route')
+const loginRoute =  require('./connections/passport_config')
 app.use('/',loginRoute)
 
 // server connections
