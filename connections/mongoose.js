@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const db = mongoose.connect('mongodb+srv://arpitvadariya003:808280@cluster0.plaliru.mongodb.net/');
+const URL = process.env.MONGO_URL
+const db = mongoose.connect(URL);
 
 if(db){
     console.log("database connected successfully");
