@@ -17,7 +17,7 @@ require('./connections/passport_config');
 
 app.use(
     session({
-      secret: process.env.SESSIONSECRET,
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: { secure: false },
@@ -34,5 +34,5 @@ app.listen(port,(err)=>{
     if(err){
         console.log(err);
     }
-    console.log("server connceted successfully:-"+port);
+    console.log("server connceted successfully :- "+ port);
 })
