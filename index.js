@@ -2,32 +2,18 @@ require("dotenv").config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT||9001;
-const mongoose  = require('./connections/mongoose')
-const session = require( "express-session");
-const passport = require('passport');
+const db = require('./connections/mongoose');
+
+//app json for json structure
 app.use(express.json());
 
+//connect all routes
+const userLogin = require('./userRoutes/loginRoutes');
+const restRegister = require('./restaurantRoutes/R_registerRoutes');
 
-
-const ejs = require("ejs");
-app.set("view engine", "ejs");
-
-
-require('./connections/passport_config');
-
-app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: true,
-      cookie: { secure: false },
-    })
-  );
-  app.use(passport.initialize()); 
-  app.use(passport.session()); 
-  
-const loginRoute =  require('./connections/passport_config')
-app.use('/',loginRoute)
+//connect default api structure 
+app.use('/api/v1', userLogin);
+app.use('/api/v1', restRegister);
 
 // server connections
 app.listen(port,(err)=>{
