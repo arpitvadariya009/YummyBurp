@@ -10,7 +10,6 @@ require('./middleware/passportConflig');
 app.use(express.json());
 
 
-
 //session
 app.use(
     session({
@@ -26,10 +25,12 @@ app.use(
 //connect all routes
 const userLogin = require('./userRoutes/loginRoutes');
 const restRegister = require('./restaurantRoutes/R_registerRoutes');
+const R_bags = require('./restaurantRoutes/bagRoutes');
 
 //connect default api structure 
 app.use('/', userLogin);
 app.use('/api/v1', restRegister);
+app.use('/api/v1', R_bags);
 
 // server connections
 app.listen(port,(err)=>{

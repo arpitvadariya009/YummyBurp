@@ -1,7 +1,6 @@
 const R_register = require('../models/R_registerModel');
 const fs = require('fs');
 
-
 const handleResponseAndFileDeletion = (res, reqFile, message, success) => {
     if (reqFile) {
         fs.unlinkSync(reqFile.path);
