@@ -1,26 +1,28 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const otpGenerator = require('otp-generator');
 
 const userSchema = mongoose.Schema({
-    googleId:{
-        type:String,
-        required:true
-    },
-    displayName: {
+    phonenumber: {
         type: String,
         required: true
+    },
+    isRegistered:{
+        type: Boolean,
+        default: false
+    },
+    name: {
+        type: String,
     },
     Image:{
         type: String, 
     },
     email: {
         type: String,
-        required: true
     },
     password: {
         type: String,
-        required: true
     },
     location: {
         type: [Number], // Assuming [longitude, latitude] format
@@ -46,6 +48,9 @@ const userSchema = mongoose.Schema({
     otp: {
         type: String
     },
+    otpExpiration: {
+        type: Date
+    },
     jwt_token: {
         type: String
     },
@@ -69,6 +74,7 @@ const userSchema = mongoose.Schema({
         ref: 'U_login'
     }
 },{timestamps: true});
+
 
 
 userSchema.pre('save', async function (next) {
