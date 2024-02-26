@@ -55,12 +55,18 @@ const path = require('path')
 
 const {
   userRegister,
-  verifyOTPAndRegister
+  verifyOTPAndRegister,
+  forgetPassword,
+  resetPassword
 }=require('../userController/loginController')
 
 
 Router.post('/register-with-otp',userRegister)
 Router.post('/verify-otp-and-register',verifyOTPAndRegister)
+Router.post('/forgetPassword-with-otp',forgetPassword)
+Router.post('/resetPassword-with-otp',resetPassword)
+
+
 
 
 
