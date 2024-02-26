@@ -28,7 +28,7 @@ const restRegister = require('./restaurantRoutes/R_registerRoutes');
 const R_bags = require('./restaurantRoutes/bagRoutes');
 
 //connect default api structure 
-app.use('/', userLogin);
+app.use('/api/v1', userLogin);
 app.use('/api/v1', restRegister);
 app.use('/api/v1', R_bags);
 
