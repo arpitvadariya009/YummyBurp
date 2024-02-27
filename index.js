@@ -26,11 +26,15 @@ app.use(
 const userLogin = require('./userRoutes/loginRoutes');
 const restRegister = require('./restaurantRoutes/R_registerRoutes');
 const R_bags = require('./restaurantRoutes/bagRoutes');
+const R_feedback = require('./feedbackRoutes/feedbackRoute');
+
 
 //connect default api structure 
 app.use('/api/v1', userLogin);
 app.use('/api/v1', restRegister);
 app.use('/api/v1', R_bags);
+app.use('/api/v1', R_feedback);
+
 
 // server connections
 app.listen(port,(err)=>{
