@@ -17,3 +17,23 @@ exports.createBag = async (req, res)=>{
         });
     }
 }
+
+exports.getBag = async (req, res)=>{
+    try{
+        const id = req.headers.id;
+      
+        const data = await Bag.findById(id).populate("rest_id")
+
+        res.status(400).json({
+            success : false,
+            message : "internal server error",
+            data : data
+        });
+        }catch(err){
+        console.log(err);
+        res.status(400).json({
+            success : false,
+            message : "internal server error"
+        });
+    }
+}

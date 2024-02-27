@@ -37,14 +37,6 @@ const userSchema = mongoose.Schema({
     state: {
         type: String
     },
-    createAt: {
-        type: Date,
-        default: Date.now()
-    },
-    updateAt: {
-        type: Date,
-        default: Date.now()
-    },
     otp: {
         type: String
     },
@@ -69,10 +61,6 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'U_login'
-    }
 },{timestamps: true});
 
 

@@ -26,7 +26,7 @@ app.use(
 const userLogin = require('./userRoutes/loginRoutes');
 const restRegister = require('./restaurantRoutes/R_registerRoutes');
 const R_bags = require('./restaurantRoutes/bagRoutes');
-const R_feedback = require('./feedbackRoutes/feedbackRoute');
+const R_feedback = require('./restaurantRoutes/feedbackRoute');
 
 
 //connect default api structure 

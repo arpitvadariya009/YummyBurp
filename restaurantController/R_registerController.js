@@ -1,22 +1,23 @@
 const R_register = require('../models/R_registerModel');
 const fs = require('fs');
 
-const handleResponseAndFileDeletion = (res, reqFile, message, success) => {
-    if (reqFile) {
-        fs.unlinkSync(reqFile.path);
-        console.log('File deleted due to database error:', reqFile.path);
+const handleResponseAndFileDeletion = (res, file, message, success) => {
+    if (file) {
+        fs.unlinkSync(file.path);
+        console.log('File deleted due to database error:', file.path);
     }
-    res.status(200).json({
-        success: success,
-        message: message,
+
+    res.status(400).json({
+        success: false,
+        message,
     });
 };
 
-exports.restRegisiter = async (req, res) => {
+exports.restRegister = async (req, res) => {
     try {
         const email = req.body.email;
         const contactNo = req.body.contactNo;
-
+        console.log(req.body);
         const existUser = await R_register.findOne({ email: email });
         const existCont = await R_register.findOne({ contactNo: contactNo });
 
@@ -27,12 +28,17 @@ exports.restRegisiter = async (req, res) => {
         } else if (existCont) {
             handleResponseAndFileDeletion(res, req.file, "Phone already exists", false);
         } else {
+            const { Latitude, Longitude, ...rest } = req.body;
+
             const user = await R_register.create({
-                ...req.body,
+                ...rest,
+                location: {
+                    type: 'Point',
+                    coordinates: [parseFloat(Longitude), parseFloat(Latitude)],
+                },
                 rest_bannerImg: req.file && req.file.filename,
             });
 
-          
             res.status(200).json({
                 success: true,
                 message: "Restaurant registered successfully",
@@ -40,7 +46,6 @@ exports.restRegisiter = async (req, res) => {
             });
         }
     } catch (err) {
-
         if (req.file) {
             fs.unlinkSync(req.file.path);
             console.log('File deleted due to database error:', req.file.path);
@@ -52,6 +57,8 @@ exports.restRegisiter = async (req, res) => {
         });
     }
 };
+
+
 
 
 exports.getRestaurants = async (req, res) => {

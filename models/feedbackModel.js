@@ -6,10 +6,8 @@ const  feedbackSchema = mongoose.Schema({
         ref: 'User'
     },
     restaurant_id: {
-        type: String,
-    },
-    rest_bannerImg: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'R_register'
     },
     feedback_message: {
         type: String,

@@ -20,8 +20,15 @@ const restaurantSchema = mongoose.Schema({
         type: String
     },
     location: {
-        type: [Number], // Assuming [longitude, latitude] format
-        index: '2dsphere' // Create a 2dsphere index for location-based queries
+        type: {
+            type: String,
+            enum: ['Point'], // You can specify 'Point' as the type for a GeoJSON Point
+            required: true,
+        },
+        coordinates: {
+            type: [Number], // [longitude, latitude] format
+            required: true,
+        },
     },
     city: {
         type: String
@@ -50,6 +57,8 @@ const restaurantSchema = mongoose.Schema({
         ref: 'User'
     }
 },{timestamps: true});
+
+restaurantSchema.index({ location: '2dsphere' }); // Index for supporting GeoJSON queries
 
 const R_registerSchema = mongoose.model('R_register', restaurantSchema);
 module.exports = R_registerSchema;

@@ -1,17 +1,15 @@
-const feedback =  require('../models/feedbackModel')
+const feedback = require('../models/feedbackModel')
 
 
 exports.restaurantsReviews = async (req, res) => {
     try {
-        const { userId, restaurant_id, rest_bannerImg, feedback_message, rating } = req.body;
+        const { userId, restaurant_id, feedback_message, rating } = req.body;
 
         const RestaurantsReview = await feedback.create({
             userId,
             restaurant_id,
-            rest_bannerImg,
             feedback_message,
             rating,
-
         })
         if (!RestaurantsReview) {
 

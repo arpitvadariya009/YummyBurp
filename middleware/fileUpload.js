@@ -4,7 +4,7 @@ const path = require('path');
 // Define storage for uploaded files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/restaurant'); // Uploads folder
+        cb(null, 'uploads'); // Uploads folder
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 });
 
 // Create multer instance
-const upload = multer({ storage: storage }).single('rest_bannerImg');
+const uploadMiddleware = multer({ storage: storage }).single('image');
 
 // Export the upload middleware
-module.exports = upload;
+module.exports = uploadMiddleware;
