@@ -57,7 +57,8 @@ const {
   userRegister,
   verifyOTPAndRegister,
   forgetPassword,
-  resetPassword
+  resetPassword,
+  updateLocation
 }=require('../userController/loginController')
 
 
@@ -65,6 +66,7 @@ Router.post('/register-with-otp',userRegister)
 Router.post('/verify-otp-and-register',verifyOTPAndRegister)
 Router.post('/forgetPassword-with-otp',forgetPassword)
 Router.post('/resetPassword-with-otp',resetPassword)
+Router.post('/update/location',updateLocation)
 
 
 

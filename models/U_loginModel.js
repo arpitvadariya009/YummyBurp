@@ -25,8 +25,15 @@ const userSchema = mongoose.Schema({
         type: String,
     },
     location: {
-        type: [Number], // Assuming [longitude, latitude] format
-        index: '2dsphere' // Create a 2dsphere index for location-based queries
+        type: {
+            type: String,
+            enum: ['Point'], // You can specify 'Point' as the type for a GeoJSON Point
+            required: true,
+        },
+        coordinates: {
+            type: [Number], // [longitude, latitude] format
+            required: true,
+        },
     },
     address: {
         type: String

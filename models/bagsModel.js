@@ -30,6 +30,6 @@ const bagSchema = new mongoose.Schema({
     },
 });
 
-const R_bags = mongoose.model('R_bags', bagSchema);
+const bagsmodel = mongoose.model('bags', bagSchema);
 
-module.exports = R_bags;
+module.exports = bagsmodel;

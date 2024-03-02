@@ -12,7 +12,7 @@ const  feedbackSchema = mongoose.Schema({
     feedback_message: {
         type: String,
     },
-    ratings:{
+    rating:{
         type:Number,
         required:true,
         min: 0, 

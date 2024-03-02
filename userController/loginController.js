@@ -176,3 +176,29 @@ exports.resetPassword = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+
+exports.updateLocation = async (req, res) => {
+    try{
+        const userId = req.query.id;
+        const { Latitude, Longitude } = req.body;
+
+        const location = await U_login.findByIdAndUpdate(userId,{
+            location: {
+                type: 'Point',
+                coordinates: [parseFloat(Longitude), parseFloat(Latitude)],
+            },  
+        })
+
+        res.status(200).json({
+            success: true,
+            message: 'Location updated successfully',
+            data: location
+        })
+    }catch(err){
+        res.status(500).json({
+            success: false, 
+            message: 'Internal Server Error' 
+        });
+    }
+};

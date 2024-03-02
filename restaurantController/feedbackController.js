@@ -1,5 +1,4 @@
-const feedback = require('../models/feedbackModel')
-
+const feedback = require('../models/feedbackModel');
 
 exports.restaurantsReviews = async (req, res) => {
     try {

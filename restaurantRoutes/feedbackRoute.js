@@ -6,7 +6,7 @@ const {
 }=require('../restaurantController/feedbackController')
 
 
-Router.post('/add/feedback',restaurantsReviews)
+Router.post('/create/feedback',restaurantsReviews)
 
 
 
